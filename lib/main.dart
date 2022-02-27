@@ -1,4 +1,3 @@
-import 'dart:js';
 
 import 'package:flutter/material.dart';
 import 'package:testflutter/screens/dataScreen.dart';
@@ -14,7 +13,8 @@ void main() {
       '/': (context) => const HomePage(),
       '/second': (context) => const SecondPage(),
       '/third': (context) => const ThirdPage(),
-      '/datos': (context) => const Datos()
+      '/datos': (context) => const Datos(),
+      '/stack': (context) => const TestStack(),
     }
     //home: HomePage(),
   ));
