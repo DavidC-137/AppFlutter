@@ -10,10 +10,10 @@ class Datos extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Datos'),
-        backgroundColor: Color.fromARGB(255, 71, 116, 101),
+        backgroundColor: Color.fromARGB(255, 133, 0, 0),
         centerTitle: true,
         elevation: 20.0,
-        shadowColor: Color.fromARGB(255, 17, 61, 30),
+        shadowColor: Color.fromARGB(255, 9, 37, 129),
         shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.vertical(bottom: Radius.circular(15))),
       ),
@@ -25,9 +25,8 @@ class Datos extends StatelessWidget {
               const SizedBox(
                 height: 20.0,
               ),
-              Image.asset("assets/img/foto.jpg", width: 370.0),
-              const Text(
-                  'Tecnologias de la informacion Area Desarrollo de Software Multiplataforma',
+              Image.asset("assets/img/foto.jpg", width: 200.0),
+              const Text('David Zavala Ugalde',
                   style: TextStyle(
                     fontSize: 25,
                     fontWeight: FontWeight.w900,
@@ -35,17 +34,11 @@ class Datos extends StatelessWidget {
                   textAlign: TextAlign.center),
               const SizedBox(height: 10.0),
               const Text(
-                'David Zavala Ugalde',
+                'Tecnologias de la informacion Área Desarrollo de Software Multiplataforma',
                 style: TextStyle(
                   fontSize: 25,
                 ),
-              ),
-              const SizedBox(height: 10.0),
-              const Text(
-                'Grupo: TI02SM-20',
-                style: TextStyle(
-                  fontSize: 20,
-                ),
+                textAlign: TextAlign.center,
               ),
               const SizedBox(
                 height: 20.0,
@@ -53,7 +46,7 @@ class Datos extends StatelessWidget {
               ElevatedButton(
                 style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all(
-                        Color.fromARGB(255, 18, 59, 25)),
+                        Color.fromARGB(255, 30, 33, 184)),
                     padding: MaterialStateProperty.all(
                         const EdgeInsets.symmetric(
                             horizontal: 25, vertical: 15)),

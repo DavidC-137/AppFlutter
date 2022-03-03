@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 // segunda página
 
 class SecondPage extends StatelessWidget {

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 //Tercera pagina
 
 class ThirdPage extends StatelessWidget {

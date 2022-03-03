@@ -1,23 +1,27 @@
+//import 'dart:js';
 
 import 'package:flutter/material.dart';
 import 'package:testflutter/screens/dataScreen.dart';
+import 'package:testflutter/screens/datosStack.dart';
 import 'package:testflutter/screens/secondScreen.dart';
 import 'package:testflutter/screens/thirdScreen.dart';
+import 'screens/stackScreen.dart';
 
 void main() {
   runApp(MaterialApp(
-    debugShowCheckedModeBanner: false,
-    title: 'Flutter demo',
-    initialRoute: '/',
-    routes: {
-      '/': (context) => const HomePage(),
-      '/second': (context) => const SecondPage(),
-      '/third': (context) => const ThirdPage(),
-      '/datos': (context) => const Datos(),
-      '/stack': (context) => const TestStack(),
-    }
-    //home: HomePage(),
-  ));
+      debugShowCheckedModeBanner: false,
+      title: 'Flutter demo',
+      initialRoute: '/',
+      routes: {
+        '/': (context) => const HomePage(),
+        '/second': (context) => const SecondPage(),
+        '/third': (context) => const ThirdPage(),
+        '/datos': (context) => const Datos(),
+        '/stack': (context) => const TestStack(),
+        '/datosStack': (context) => const DatosStack()
+      }
+      //home: HomePage(),
+      ));
 }
 
 class HomePage extends StatelessWidget {
@@ -44,7 +48,7 @@ class HomePage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Image.asset("assets/img/equation_clock.jpg", width: 370.0),
+            Image.asset("assets/img/equation_clock.jpg", width: 270.0),
             const SizedBox(height: 20.0),
             ElevatedButton(
                 style: ButtonStyle(
@@ -93,6 +97,27 @@ class HomePage extends StatelessWidget {
                     builder: (context) => const Datos(),
                   );
                   Navigator.pushNamed(context, '/datos');
+                }),
+            const SizedBox(height: 10.0),
+            ElevatedButton(
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all(Colors.green),
+                  padding: MaterialStateProperty.all(
+                      EdgeInsets.symmetric(horizontal: 25, vertical: 15)),
+                ),
+                child: const Text('Stack'),
+                onPressed: () {
+                  Navigator.pushNamed(context, '/stack');
+                }),
+                ElevatedButton(
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all(Colors.green),
+                  padding: MaterialStateProperty.all(
+                      EdgeInsets.symmetric(horizontal: 25, vertical: 15)),
+                ),
+                child: const Text('Datos Stack'),
+                onPressed: () {
+                  Navigator.pushNamed(context, '/datosStack');
                 })
           ],
         ),
@@ -100,4 +125,3 @@ class HomePage extends StatelessWidget {
     );
   }
 }
-
