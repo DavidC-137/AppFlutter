@@ -5,13 +5,14 @@ class FormScreen extends StatefulWidget {
   const FormScreen({Key? key}) : super(key: key);
 
   @override
-  State<FormScreen> createState() => _formScreenState();
+  State<FormScreen> createState() => _FormScreenState();
 }
 
-class _formScreenState extends State<FormScreen> {
-bool _isChecked =false;
-
+class _FormScreenState extends State<FormScreen> {
+  bool _isChecked=false;
   late TextEditingController _controller;
+  
+
   @override
   void initState() {
     // TODO: implement initState
@@ -19,83 +20,115 @@ bool _isChecked =false;
     _controller = TextEditingController();
   }
 
-@override
-void dispose() {
+  @override
+  void dispose(){
     // TODO: implement dispose
     super.dispose();
     _controller.dispose();
   }
 
-
-  @override
-  Widget build(BuildContext context) {
-    Color getColor(Set<MaterialState> states) {
-      const Set<MaterialState> interactiveStates = <MaterialState>{
-        MaterialState.pressed,
-        MaterialState.hovered,
-        MaterialState.focused,
-      };
-      if (states.any(interactiveStates.contains)) {
-        return const Color.fromARGB(255, 7, 44, 75);
-      }
-      return const Color.fromARGB(255, 9, 8, 71);
-    }
-    return Scaffold(
-
-      body: Center(
-        child: Container(
-           width: 300.0,
-          height: 390.0,
-           padding: const EdgeInsets.all(15.0),
-          child:Column(
-            children: [
-              TextField(
-                keyboardType: TextInputType.emailAddress,
-                controller: _controller,
-                decoration: const InputDecoration(
-                    labelText: "Correo",
-                    hintText: "correo@correo.com",
-                    prefixIcon: Icon(Icons.contact_mail)),
-              ),
-              const SizedBox(height: 40.0),
-              const TextField(
-                obscureText: true,
-                keyboardType: TextInputType.visiblePassword,
-                decoration: InputDecoration(
-                  labelText: "Contraseña",
-                  prefixIcon: Icon(Icons.lock)
-                  ),
-              ),
-              const SizedBox(height: 30.0,),
-               TextField(
-                keyboardType: TextInputType.number,
-                inputFormatters: [
-
-                FilteringTextInputFormatter.allow(RegExp('[0-9 -]')),  
-                LengthLimitingTextInputFormatter(16)
-                ],
-                decoration:const InputDecoration(
-                  labelText: 'Tarjeta',
-                   prefixIcon: Icon(Icons.credit_card),
-                )
-              ),
-              const SizedBox(height: 30.0),
-
-              
-              Checkbox(
-              checkColor: const Color.fromARGB(255, 255, 255, 255),
-               fillColor: MaterialStateProperty.resolveWith(getColor),
-               value: _isChecked,
-               onChanged: (bool? value) {
-               setState(() {
-               _isChecked = value!;
-               });
-               }
-              )
-            ],
-          ),
-        ),
-       ),
-    );
+  @override 
+  Widget build(BuildContext context) { 
+    return Scaffold( 
+      body: Center( 
+        child: Form( 
+          child: Column( 
+            mainAxisAlignment: MainAxisAlignment.center, 
+            children: <Widget>[ 
+              inputEmail(_controller), 
+              const SizedBox(height: 10), 
+              inputPassword(), 
+              const SizedBox(height: 10), 
+              inputCard(), 
+              const SizedBox(height: 10), 
+              Container( 
+                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                margin: const EdgeInsets.symmetric(horizontal: 30.0), 
+                child: CheckboxListTile( 
+                  title: const Text('Validar'), 
+                  value: _isChecked, 
+                  onChanged: (bool? value) { 
+                    setState((){ 
+                      _isChecked = value!; 
+                    }); 
+                  } 
+                ), 
+              ), const SizedBox(height: 10), 
+              ElevatedButton( 
+                onPressed: () => {}, 
+                child: const Text('Enviar') 
+              ) 
+            ]
+         ) 
+        ), 
+      ) 
+    ); 
   }
+}
+
+Widget inputCard(){ 
+  return Container( 
+    padding: const EdgeInsets.symmetric(horizontal: 20.0), 
+    margin: const EdgeInsets.symmetric(horizontal: 30.0), 
+    decoration: BoxDecoration(
+      borderRadius: BorderRadius.circular(10), 
+      border: Border.all(color: Colors.grey, width: 2.0) 
+    ), 
+    child: TextFormField( 
+      keyboardType: TextInputType.number, 
+      inputFormatters: [ 
+        FilteringTextInputFormatter.allow(RegExp('[0-9 -]')), 
+        LengthLimitingTextInputFormatter(16) 
+      ], 
+      decoration: const InputDecoration( 
+        border: InputBorder.none, 
+        prefixIcon: Icon(Icons.credit_card), 
+        labelText: 'Tarjeta', 
+        hintText: '1234-1234-1234-1234' 
+      ), 
+    ), 
+  ); 
+}
+
+Widget inputPassword() {
+  return Container(
+    padding: const EdgeInsets.symmetric(horizontal: 20.0),
+    margin: const EdgeInsets.symmetric(horizontal: 30.0),
+    decoration: BoxDecoration( 
+      borderRadius: BorderRadius.circular(10), 
+      border: Border.all(color: Colors.grey, width: 2.0) 
+    ),
+    child: TextFormField( 
+      obscureText: true, 
+      decoration: const InputDecoration( 
+        border: InputBorder.none, 
+        prefixIcon: Icon(Icons.lock), 
+        labelText: 'Contraseña'
+      ),
+    ),
+  );
+}
+
+Widget inputEmail(_controller){ 
+  return Container( 
+    padding: const EdgeInsets.symmetric(horizontal: 20.0), 
+    margin: const EdgeInsets.symmetric(horizontal: 30.0), 
+    decoration: BoxDecoration( 
+      borderRadius: BorderRadius.circular(10), 
+      border: Border.all(color: Colors.grey, width: 2.0)
+    ),
+    child: TextFormField( 
+      keyboardType: TextInputType.emailAddress, 
+      autofocus: true, 
+      controller: _controller, 
+      decoration: const InputDecoration( 
+       border: InputBorder.none, 
+       //icon: Icon(Icons.contact_mail), 
+       prefixIcon: Icon(Icons.contact_mail), 
+       labelText: 'Correo', 
+       hintText: 'micorreo@correo.com'
+
+      ), 
+    ),
+  ); 
 }
