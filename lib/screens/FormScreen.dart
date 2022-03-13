@@ -53,7 +53,8 @@ class _FormScreenState extends State<FormScreen> {
                     }); 
                   } 
                 ), 
-              ), const SizedBox(height: 10), 
+              ), 
+              const SizedBox(height: 10), 
               ElevatedButton( 
                 onPressed: () => {}, 
                 child: const Text('Enviar') 
@@ -132,3 +133,5 @@ Widget inputEmail(_controller){
     ),
   ); 
 }
+
+
